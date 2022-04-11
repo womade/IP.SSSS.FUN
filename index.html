@@ -1,0 +1,535 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0" />
+  <meta name="description" content="在线查看本机IPv4和IPv6状态" />
+  <meta name="author" content="中國遠徵" />
+  <title>本机IP状态</title>
+  <script src="https://cdn.ssss.fun/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.ssss.fun/bootstrap/4.4.1/css/bootstrap.min.css" />
+  <style>
+    .mt {
+      margin-top: .5rem;
+    }
+    .ssss {
+      text-align: right;
+      padding-left: 50px;
+      padding-top: 8px;
+      word-break: break-all;
+    }
+    .navbar-toggler {
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="./img/logo-0.svg" alt="中國遠徵" width="125" height="30" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"> <a class="nav-link" href="./test">访问测试</a> 
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="https://pay.ssss.fun">赞助支持</a> 
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="https://msg.ssss.fun">问题反馈</a> 
+          </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+          <input class="form-control form-control-success mr-sm-2 bg-light" type="text" placeholder="查询IP/域名位置信息" aria-label="查询" id="inputValue" onkeyup="Enter_to_Search()" />
+          <button class="btn btn-success my-2 my-sm-0" onclick="Click_to_Search()">查询</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container" style="margin-top:20px;">
+    <div class="alert alert-success text-center" id="v4-mode" style="display: none;" role="alert">
+      当前设备默认使用IPv4访问互联网
+    </div>
+    <div class="alert alert-success text-center" id="v6-mode" style="display: none;" role="alert">
+      当前设备默认使用IPv6访问互联网
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="d-flex justify-content-between align-items-center mb-3 mr-1 ml-1"> <span class="text-muted">IPv4连通性测试</span> <span id="ipv4-refresh"> 
+       <svg width="30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" enable-background="new 0 0 24 24"> 
+        <path d="M 8.15625 5 L 9.75 7 L 17 7 C 17.551 7 18 7.448 18 8 L 18 13 L 15 13 L 19 18 L 23 13 L 20 13 L 20 8 C 20 6.346 18.654 5 17 5 L 8.15625 5 z M 5 6 L 1 11 L 4 11 L 4 16 C 4 17.654 5.346 19 7 19 L 15.84375 19 L 14.25 17 L 7 17 C 6.449 17 6 16.552 6 16 L 6 11 L 9 11 L 5 6 z" /> 
+       </svg> </span> </h4> 
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IPv4</h5> 
+            </div>
+            <div id="ipv4-progress" class="progress" style="width:120px;height:1.3rem;">
+              <div id="ipv4-progress-item" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div> <span class="text-muted" id="ipv4-support" style="display:none;"> <span class="badge badge-danger ipv4-not-support" style="display:none">不支持</span>  <span class="badge badge-success ipv4-support" style="display:none">支持</span> </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Address</h5> 
+            </div> <span class="text-muted ssss ipv4-address"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Location</h5> 
+            </div> <span class="text-muted ssss ipv4-location" style="text-align:right"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">L&amp;L</h5> 
+            </div> <span class="text-muted ssss ipv4-lal"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ASN</h5> 
+            </div> <span class="text-muted ssss ipv4-asn"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ASN ORG</h5> 
+            </div> <span class="text-muted ssss ipv4-asname"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ISP</h5> 
+            </div> <span class="text-muted ssss ipv4-isp"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IP ORG</h5> 
+            </div> <span class="text-muted ssss ipv4-iporg"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">rDNS</h5> 
+            </div> <span class="text-muted ssss ipv4-rdns"> </span> 
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 class="d-flex justify-content-between align-items-center mb-3 mr-1 ml-1"> <span class="text-muted">IPv6连通性测试</span> <span id="ipv6-refresh"> 
+       <svg width="30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" enable-background="new 0 0 24 24"> 
+        <path d="M 8.15625 5 L 9.75 7 L 17 7 C 17.551 7 18 7.448 18 8 L 18 13 L 15 13 L 19 18 L 23 13 L 20 13 L 20 8 C 20 6.346 18.654 5 17 5 L 8.15625 5 z M 5 6 L 1 11 L 4 11 L 4 16 C 4 17.654 5.346 19 7 19 L 15.84375 19 L 14.25 17 L 7 17 C 6.449 17 6 16.552 6 16 L 6 11 L 9 11 L 5 6 z" /> 
+       </svg> </span> </h4> 
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IPv6</h5> 
+            </div>
+            <div id="ipv6-progress" class="progress" style="width:120px;height:1.3rem;">
+              <div id="ipv6-progress-item" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div> <span class="text-muted" id="ipv6-support" style="display:none;"> <span class="badge badge-danger ipv6-not-support" style="display:none">不支持</span>  <span class="badge badge-success ipv6-support" style="display:none">支持</span> </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Address</h5> 
+            </div> <span class="text-muted ssss ipv6-address"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Location</h5> 
+            </div> <span class="text-muted ssss ipv6-location" style="text-align:right"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">L&amp;L</h5> 
+            </div> <span class="text-muted ssss ipv6-lal"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ASN</h5> 
+            </div> <span class="text-muted ssss ipv6-asn"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ASN ORG</h5> 
+            </div> <span class="text-muted ssss ipv6-asname"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ISP</h5> 
+            </div> <span class="text-muted ssss ipv6-isp"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IP ORG</h5> 
+            </div> <span class="text-muted ssss ipv6-iporg"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">rDNS</h5> 
+            </div> <span class="text-muted ssss ipv6-rdns"> </span> 
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 class="d-flex justify-content-between align-items-center mb-3 mr-1 ml-1"> <span class="text-muted">DNS检测</span> <span id="dnscheck-refresh"> 
+       <svg width="30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" enable-background="new 0 0 24 24"> 
+        <path d="M 8.15625 5 L 9.75 7 L 17 7 C 17.551 7 18 7.448 18 8 L 18 13 L 15 13 L 19 18 L 23 13 L 20 13 L 20 8 C 20 6.346 18.654 5 17 5 L 8.15625 5 z M 5 6 L 1 11 L 4 11 L 4 16 C 4 17.654 5.346 19 7 19 L 15.84375 19 L 14.25 17 L 7 17 C 6.449 17 6 16.552 6 16 L 6 11 L 9 11 L 5 6 z" /> 
+       </svg> </span> </h4> 
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IPv6+DNS4</h5> 
+            </div>
+            <div id="ipv6-dns4" class="progress" style="width:120px;height:1.3rem;">
+              <div id="ipv6-dns4-item" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div> <span class="text-muted" id="ipv6-dns4-support" style="display:none;"> <span class="badge badge-danger ipv6-dns4-not-support" style="display:none">不支持</span>  <span class="badge badge-success ipv6-dns4-support" style="display:none">支持</span> </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IPv4+DNS6</h5> 
+            </div>
+            <div id="ipv4-dns6" class="progress" style="width:120px;height:1.3rem;">
+              <div id="ipv4-dns6-item" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div> <span class="text-muted" id="ipv4-dns6-support" style="display:none;"> <span class="badge badge-danger ipv4-dns6-not-support" style="display:none">不支持</span>  <span class="badge badge-success ipv4-dns6-support" style="display:none">支持</span> </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">IPv6+DNS6</h5> 
+            </div>
+            <div id="ipv6-dns6" class="progress" style="width:120px;height:1.3rem;">
+              <div id="ipv6-dns6-item" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div> <span class="text-muted" id="ipv6-dns6-support" style="display:none;"> <span class="badge badge-danger ipv6-dns6-not-support" style="display:none">不支持</span>  <span class="badge badge-success ipv6-dns6-support" style="display:none">支持</span> </span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h4 class="d-flex justify-content-between align-items-center mb-3 mr-1 ml-1"> <span class="text-muted">DNS信息</span> <span id="dnsinfo-refresh"> 
+       <svg width="30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" enable-background="new 0 0 24 24"> 
+        <path d="M 8.15625 5 L 9.75 7 L 17 7 C 17.551 7 18 7.448 18 8 L 18 13 L 15 13 L 19 18 L 23 13 L 20 13 L 20 8 C 20 6.346 18.654 5 17 5 L 8.15625 5 z M 5 6 L 1 11 L 4 11 L 4 16 C 4 17.654 5.346 19 7 19 L 15.84375 19 L 14.25 17 L 7 17 C 6.449 17 6 16.552 6 16 L 6 11 L 9 11 L 5 6 z" /> 
+       </svg> </span> </h4> 
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Address</h5> 
+            </div> <span class="text-muted ssss dns-address"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">Location</h5> 
+            </div> <span class="text-muted ssss dns-location" style="text-align:right"> </span> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+            <div>
+              <h5 class="mt">ISP</h5> 
+            </div> <span class="text-muted ssss dns-isp"> </span> 
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <img class="mb-2" src="./img/logo-1.svg" alt="中國遠徵" width="144" height="40" />
+          <small class="d-block mb-3 text-muted">&copy; 1998 - <script>document.write(new Date().getFullYear());</script></small> 
+          <a class="text-muted" href="https://beian.miit.gov.cn/">粤ICP备 20063797号</a> 
+        </div>
+        <div class="col-6 col-md">
+          <h5>友链</h5> 
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="https://www.ssss.fun">神速搜索</a>
+            </li>
+            <li><a class="text-muted" href="https://pan.ssss.fun">4S云盘</a>
+            </li>
+            <li><a class="text-muted" href="https://blog.ssss.fun">我的博客</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>工具</h5> 
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="https://music.ssss.fun">MusicFun</a>
+            </li>
+            <li><a class="text-muted" href="https://tao.ssss.fun">淘优惠券</a>
+            </li>
+            <li><a class="text-muted" href="https://v.ssss.fun">视频解析</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>关于</h5> 
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">位置信息</a>
+            </li>
+            <li><a class="text-muted" href="#">隐私策略</a>
+            </li>
+            <li><a class="text-muted" href="#">使用协议</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.ssss.fun/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+    var language = "zh-CN"
+    if (navigator.language.indexOf("en") != -1) {
+      language = "en"
+    }
+    var v4Info = function () {
+      var url = "https://api-ipv4.ip.sb/jsonip?lang=" + language
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          $("#ipv4-progress-item").width("100%");
+          setTimeout(function () {
+            $("#ipv4-progress").hide();
+            $("#ipv4-progress-item").width("0%");
+            $("body").append("<script src='https://api.ssss.fun/ip/info.php?ip=" + ssss.ip + "&lang=" + language + "&callback=ipv4_ssss'>");
+            $("body").append("<script src='https://clientapi.ipip.net/ipv6test/asn?v4=" + ssss.ip + "&callback=asn'><\/script>");
+          }, 400)
+          setTimeout(function () {
+            $("#ipv4-support").show();
+            $(".ipv4-support").show();
+            $(".ipv4-results").html("支持");
+            $(".ipv4-address").html("<a href='./geo/#" + ssss.ip + "'>" + ssss.ip + "</a>");
+          }, 500)
+        }, error: function () {
+          $("#ipv4-progress-item").width("100%");
+          setTimeout(function () {
+            $("#ipv4-progress").hide();
+            $("#ipv4-progress-item").width("0%");
+          }, 400)
+          setTimeout(function () {
+            $("#ipv4-support").show();
+            $(".ipv4-not-support").show();
+          }, 500)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var v6Info = function () {
+      var url = "https://api-ipv6.ip.sb/jsonip?lang=" + language
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          $("#ipv6-progress-item").width("100%");
+          setTimeout(function () {
+            $("#ipv6-progress").hide();
+            $("#ipv6-progress-item").width("0%");
+            $("body").append("<script src='https://api.ssss.fun/ip/info.php?ip=" + ssss.ip + "&lang=" + language + "&callback=ipv6_ssss'><\/script>");
+            $("body").append("<script src='https://clientapi.ipip.net/ipv6test/asn?v6=" + ssss.ip + "&callback=asn'><\/script>");
+          }, 400)
+          setTimeout(function () {
+            $("#ipv6-support").show();
+            $(".ipv6-support").show();
+            $(".ipv6-results").html("支持");
+            $(".ipv6-address").html("<a href='./geo/#" + ssss.ip + "'>" + ssss.ip + "</a>");
+          }, 500)
+        }, error: function () {
+          $("#ipv6-progress-item").width("100%");
+          setTimeout(function () {
+            $("#ipv6-progress").hide();
+            $("#ipv6-progress-item").width("0%");
+          }, 400)
+          setTimeout(function () {
+            $("#ipv6-support").show();
+            $(".ipv6-not-support").show();
+          }, 500)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var ipv4_ssss = function (item) {
+      $(".ipv4-location").html(item.country + " " + item.regionName + " " + item.city + " " + item.district);
+      $(".ipv4-lal").html(item.lat + "," + item.lon);
+      $(".ipv4-asname").html(item.asname);
+      $(".ipv4-isp").html(item.isp);
+      $(".ipv4-iporg").html(item.org);
+      $(".ipv4-rdns").html(item.reverse);
+    }
+    var ipv6_ssss = function (item) {
+      $(".ipv6-location").html(item.country + " " + item.regionName + " " + item.city + " " + item.district);
+      $(".ipv6-lal").html(item.lat + "," + item.lon);
+      $(".ipv6-asname").html(item.asname);
+      $(".ipv6-isp").html(item.isp);
+      $(".ipv6-iporg").html(item.org);
+      $(".ipv6-rdns").html(item.reverse);
+    }
+    var asn = function (item) {
+      if (item.ipv4 != undefined) {
+        $(".ipv4-asn").html(item.ipv4.asn);
+      }
+      if (item.ipv6 != undefined) {
+        $(".ipv6-asn").html(item.ipv6.asn);
+      }
+    }
+    var dns_ssss = function (item) {
+      $(".dns-location").html(item.country + " " + item.regionName + " " + item.city + " " + item.district);
+      $(".dns-isp").html(item.isp);
+    }
+    var dns_check = function (v, d, b) {
+      $("#ipv" + v + "-dns" + d + "-item").width("100%");
+      setTimeout(function () {
+        $("#ipv" + v + "-dns" + d).hide();
+        $("#ipv" + v + "-dns" + d + "-item").width("0%");
+        if (b == true) {
+          $("#ipv" + v + "-dns" + d + "-support .ipv" + v + "-dns" + d + "-support").show();
+          $("#ipv" + v + "-dns" + d + "-support .ipv" + v + "-dns" + d + "-not-support").hide();
+        } else {
+          $("#ipv" + v + "-dns" + d + "-support .ipv" + v + "-dns" + d + "-not-support").show();
+          $("#ipv" + v + "-dns" + d + "-support .ipv" + v + "-dns" + d + "-support").hide();
+        }
+      }, 400)
+      setTimeout(function () {
+        $("#ipv" + v + "-dns" + d + "-support").show();
+      }, 500)
+    }
+    var dns_v4_d6 = function () {
+      var url = "https://v4-zone6.ipv6-test.com/json/proto.php"
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          dns_check(4, 6, true)
+        }, error: function () {
+          dns_check(4, 6, false)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var dns_v6_d4 = function () {
+      var url = "https://v6-zone4.ipv6-test.com/json/proto.php"
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          dns_check(6, 4, true)
+        }, error: function () {
+          dns_check(6, 4, false)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var dns_v6_d6 = function () {
+      var url = "https://v6-zone6.ipv6-test.com/json/proto.php"
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          dns_check(6, 6, true)
+        }, error: function () {
+          dns_check(6, 6, false)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var dnsInfo = function () {
+      var url = "https://edns.ip-api.com/json?lang=" + language
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          setTimeout(function () {
+            $("body").append("<script src='https://api.ssss.fun/ip/info.php?ip=" + ssss.dns.ip + "&lang=" + language + "&callback=dns_ssss'><\/script>");
+          }, 400)
+          setTimeout(function () {
+            $(".dns-address").html("<a href='./geo/#" + ssss.dns.ip + "'>" + ssss.dns.ip + "</a>");
+          }, 500)
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+    var browser = function () {
+      var url = "https://api.ip.sb/jsonip?lang=" + language
+      $.ajax({
+        url: url,
+        type: "get",
+        success: function (ssss) {
+          setTimeout(function () {
+            if (ssss.ip.indexOf(".") > 0) {
+              $("#v4-mode").show();
+              $("#v6-mode").hide();
+            } else {
+              $("#v6-mode").show();
+              $("#v4-mode").hide();
+            }
+          }, 500);
+        }, async: true,
+        dataType: "JSONP"
+      })
+    }
+
+    setTimeout(function () {
+      v4Info();
+      v6Info();
+      browser();
+      dnsInfo();
+      dns_v4_d6();
+      dns_v6_d4();
+      dns_v6_d6();
+    }, 1000)
+     $("#ipv4-refresh").click(function () {
+      $("#ipv4-support").hide();
+      $("#ipv4-progress").show();
+      $(".ipv4-support").hide();
+      $(".ipv4-not-support").hide();
+      $(".ipv4-results").html("");
+      $(".ipv4-asn").html("");
+      $(".ipv4-address").html("");
+      $(".ipv4-location").html("");
+      $(".ipv4-lal").html("");
+      $(".ipv4-isp").html("");
+      $(".ipv4-rdns").html("");
+      v4Info();
+      browser();
+    })
+     $("#ipv6-refresh").click(function () {
+      $("#ipv6-support").hide();
+      $("#ipv6-progress").show();
+      $(".ipv6-support").hide();
+      $(".ipv6-not-support").hide();
+      $(".ipv6-results").html("");
+      $(".ipv6-asn").html("");
+      $(".ipv6-address").html("");
+      $(".ipv6-location").html("");
+      $(".ipv6-lal").html("");
+      $(".ipv6-isp").html("");
+      $(".ipv6-rdns").html("");
+      v6Info();
+      browser();
+    })
+     $("#dnscheck-refresh").click(function () {
+      $("#ipv6-dns4").show();
+      $("#ipv6-dns4-support").hide();
+      $("#ipv6-dns6").show();
+      $("#ipv6-dns6-support").hide();
+      $("#ipv4-dns6").show();
+      $("#ipv4-dns6-support").hide();
+      dns_v4_d6();
+      dns_v6_d4();
+      dns_v6_d6();
+    })
+     $("#dnsinfo-refresh").click(function () {
+      $(".dns-address").html("");
+      $(".dns-location").html("");
+      $(".dns-isp").html("");
+      dnsInfo();
+    })
+
+    function Enter_to_Search() {
+      var code = event.keyCode;
+      if (code == 13) {
+        var input_value = document.getElementById("inputValue").value;
+        window.location.href = ("./geo/#" + input_value)
+      }
+    }
+
+    function Click_to_Search() {
+      var input_value = document.getElementById("inputValue").value;
+      window.location.href = ("./geo/#" + input_value)
+    }
+  </script>
+  <script type="text/javascript" src="https://cdn.ssss.fun/z/3/ip_ssss_fun.js"></script>
+</body>
+
+</html>

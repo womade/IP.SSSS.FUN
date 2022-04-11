@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <style>
+    html {
+      visibility: hidden;
+      opacity: 0
+    }
+  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+  <meta name="description" content="通过IP查询位置信息" />
+  <meta name="keywords" content="IP.SSSS.FUN" />
+  <title>地理位置</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preload" href="./fonts/dosis-v8-latin-200.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="./fonts/dosis-v8-latin-500.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="./fonts/dosis-v8-latin-regular.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="./fonts/open-sans-v16-latin-300.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="./fonts/open-sans-v16-latin-600.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="./fonts/open-sans-v16-latin-regular.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link href="./css/style.css" rel="stylesheet" />
+</head>
+
+<body class="body-scrolled navbar-scrolled header-scrolled">
+  <nav class="navbar navbar-expand-lg navbar-dark stick" data-navbar="fixed">
+    <div class="container">
+      <div class="navbar-left">
+        <a class="navbar-brand" href="/">
+          <img class="logo-dark" src="../img/logo-1.svg" alt="logo" width="125" height="30" />
+        </a>
+      </div>
+      <div class="navbar-mobile">
+        <nav class="nav nav-navbar ml-auto">
+          <a class="nav-link" href="/">本机状态</a>
+          <a class="nav-link" href="/test">访问测试</a>
+          <a class="nav-link" href="https://pay.ssss.fun">赞助支持</a>
+        </nav>
+      </div>
+    </div>
+  </nav>
+  <main class="main-content">
+    <section class="section bg-gray pt-3">
+      <div class="container" id="sc">
+        <header class="section-header mb-0">
+          <h2>IP/域名查询</h2>
+          <p>查询IP或域名</p>
+        </header>
+        <div class="row gap-y">
+          <div class="col-md-8 mx-auto">
+            <form class="rounded mt-1" onsubmit="return query(document.forms[0].ip.value),!1">
+              <div class="row">
+                <div class="col">
+                  <div class="input-group">
+                    <input spellcheck="false" autocomplete="off" class="form-control" name="ip" placeholder="请输入IP或域名" />
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-lg btn-primary" type="submit">查询</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 mx-auto mdh">
+            <pre id="codeOutput"><code class="blur">{
+    <span class="key">"query":</span><span class="string">query</span>,
+    <span class="key">"status":</span><span class="string">status</span>,
+    <span class="key">"continent":</span><span class="string">continent</span>,
+    <span class="key">"continentCode":</span><span class="string">continentCode</span>,
+    <span class="key">"country":</span><span class="string">country</span>,
+    <span class="key">"countryCode":</span><span class="string">countryCode</span>,
+    <span class="key">"region":</span><span class="string">region</span>,
+    <span class="key">"regionName":</span><span class="string">regionName</span>,
+    <span class="key">"city":</span><span class="string">city</span>,
+    <span class="key">"district":</span><span class="string">district</span>,
+    <span class="key">"zip":</span><span class="string">zip</span>,
+    <span class="key">"lat":</span><span class="number">lat</span>,
+    <span class="key">"lon":</span><span class="number">lon</span>,
+    <span class="key">"timezone":</span><span class="string">timezone</span>,
+    <span class="key">"offset":</span><span class="number">offset</span>,
+    <span class="key">"currency":</span><span class="string">currency</span>,
+    <span class="key">"isp":</span><span class="string">isp</span>,
+    <span class="key">"org":</span><span class="string">org</span>,
+    <span class="key">"as":</span><span class="string">as</span>,
+    <span class="key">"asname":</span><span class="string">asname</span>,
+    <span class="key">"mobile":</span><span class="boolean">mobile</span>,
+    <span class="key">"proxy":</span><span class="boolean">proxy</span>,
+    <span class="key">"hosting":</span><span class="boolean">hosting</span>
+}</code></pre> 
+            <pre id="preOutputEdns"><code id="codeOutputEdns" class="blur">{
+    <span class="key">"dns":</span> {
+        <span class="key">"geo":</span> <span class="string">geo</span>,
+        <span class="key">"ip":</span> <span class="string">ip</span>
+    }
+}</code></pre>
+          </div>
+          <div id="mapOuter" class="col-md-6 mx-auto">
+            <div id="map">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./js/script.js"></script>
+  <footer id="footer" class="footer py-9">
+    <div class="container">
+      <div class="row gap-y">
+        <div class="col-xl-4 order-md-last">
+          <h6 class="mb-4"><strong>关于</strong></h6>
+          <small>如果您觉得本网站不错，可以赞助支持一下哦。</small>
+          <br />
+          <small>如果您在使用中遇到问题，也可以向我们反馈。</small>
+          <br />
+          <br />
+          <a class="btn btn-primary mr-2" href="https://pay.ssss.fun/">赞助支持</a>
+          <a class="btn btn-secondary" href="https://msg.ssss.fun">问题反馈</a>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <h6 class="mb-4"><strong>友链</strong></h6>
+          <div class="nav flex-column">
+            <a class="nav-link" href="https://www.ssss.fun">神速搜索</a>
+            <a class="nav-link" href="https://pan.ssss.fun">4S云盘</a>
+            <a class="nav-link" href="https://blog.ssss.fun">我的博客</a>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-2">
+          <h6 class="mb-4"><strong>工具</strong></h6>
+          <div class="nav flex-column">
+            <a class="nav-link" href="https://music.ssss.fun">MusicFun</a>
+            <a class="nav-link" href="https://tao.ssss.fun">淘优惠券</a>
+            <a class="nav-link" href="https://v.ssss.fun">视频解析</a>
+          </div>
+        </div>
+        <div class="col-xl-4 order-md-first">
+          <h6 class="mb-6"><img class="mt-2" src="../img/logo-1.svg" alt="中國遠徵" width="200" height="50"/></h6>
+          <small class="opacity-70">Copyright © <script>document.write(new Date().getFullYear());</script><b> 中國遠徵 </b>All rights reserved.</small>
+          <br />
+          <small class="opacity-70">中华人民共和国工业和信息化部备案管理系统网站</small>
+          <br />
+          <a class="ma opacity-70" href="https://beian.miit.gov.cn/">粤ICP备 20063797号</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

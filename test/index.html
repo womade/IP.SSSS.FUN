@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui" />
+    <title>网络访问测试</title>
+    <meta name="description" content="本机网络访问测试，您可以通过本站查询您的IP归属地并测试国内和海外网站访问状态" />
+    <meta content="ip, ip.ssss.fun, ip查看, ip地址检测, ip查询, ip测试, ip地址, ip归属地, ip位置, 查ip, 网络连通, geoip, IP 归属地 , 中國遠徵" name="keywords" />
+    <link rel="stylesheet" href="./css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <meta property="og:title" content="IP 地址查询 | 中國遠徵" />
+    <meta property="og:site_name" content="IP 地址查询 | 中國遠徵" />
+    <meta content="zh-CN" property="og:locale" />
+    <meta property="og:type" content="Website" />
+    <meta property="og:url" content="https://ip.ssss.fun" />
+    <meta property="og:image" content="/favicon.ico" />
+    <meta property="og:description" content="IP 查询 (ip.ssss.fun) 网站。多接口、全方位查询 IP 地址及其归属地，检查网络是否连通、网站可否访问。" />
+    <meta name="twitter:card" content="summary" /></head>
+  
+  <body>
+    <div class="container">
+      <section class="section">
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <h1 class="ssss-text-center title">网络访问测试</h1>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">访问国内网站</h2>
+              <p class="ssss-text-center ssss-text-small">（节点A）</p>
+              <hr class="ssss-my-2" />
+              <div class="ip-body">
+                <div class="ssss-text-center">
+                  <p id="ip-A" class="ssss-text-bold">-</p>
+                  <p id="ip-A-geo" class="ssss-text-small" style="font-size: 0.8em">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">访问国内网站</h2>
+              <p class="ssss-text-center ssss-text-small">（节点B）</p>
+              <hr class="ssss-my-2" />
+              <div class="ip-body">
+                <div class="ssss-text-center">
+                  <p id="ip-B" class="ssss-text-bold">-</p>
+                  <p id="ip-B-geo" class="ssss-text-small style="font-size: 0.8em">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">访问海外网站</h2>
+              <p class="ssss-text-center ssss-text-small">（节点X）</p>
+              <hr class="ssss-my-2" />
+              <div class="ip-body">
+                <div class="ssss-text-center">
+                  <p id="ip-X" class="ssss-text-bold">-</p>
+                  <p id="ip-X-geo" class="ssss-text-small" style="font-size: 0.8em">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">访问海外网站</h2>
+              <p class="ssss-text-center ssss-text-small">（节点Y）</p>
+              <hr class="ssss-my-2" />
+              <div class="ip-body">
+                <div class="ssss-text-center">
+                  <p id="ip-Y" class="ssss-text-bold">-</p>
+                  <p id="ip-Y-geo" class="ssss-text-small style="font-size: 0.8em">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">百度搜索</h2>
+              <p class="ssss-text-center ssss-text-small">国内网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-baidu">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">网易云音乐</h2>
+              <p class="ssss-text-center ssss-text-small">国内网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-cloudmusic">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">优酷视频</h2>
+              <p class="ssss-text-center ssss-text-small">国内网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-youku">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">天猫淘宝</h2>
+              <p class="ssss-text-center ssss-text-small">国内网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-taobao">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Google</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-google">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">YouTube</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-youtube">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Github</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-github">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">amazon</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-amazon">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Facebook</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-facebook">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Twitter</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-twitter">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Instagram</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-instagram">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half-mobile">
+            <div class="box">
+              <h2 class="ssss-text-center ssss-text-bold subtitle ssss-mb-1">Telegram</h2>
+              <p class="ssss-text-center ssss-text-small">海外网站</p>
+              <hr class="ssss-my-2" />
+              <div class="http-body">
+                <div class="ssss-text-center">
+                  <p id="http-telegram">-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="./js/script.js"></script>
+    <script type="text/javascript" src="https://cdn.ssss.fun/z/3/ip_ssss_fun.js"></script>  
+  </body>
+
+</html>
