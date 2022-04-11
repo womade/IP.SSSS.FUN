@@ -58,49 +58,49 @@ button,hr,input {
 	font-family:'Open Sans';
 	font-style:normal;
 	font-weight:300;
-	src:local('Open Sans Light'),local('OpenSans-Light'),url(./open-sans-v16-latin-300.woff2) format('woff2'),url(./open-sans-v16-latin-300.woff) format('woff')
+	src:local('Open Sans Light'),local('OpenSans-Light'),url(../fonts/open-sans-v16-latin-300.woff2) format('woff2'),url(../fonts/open-sans-v16-latin-300.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:'Open Sans';
 	font-style:normal;
 	font-weight:400;
-	src:local('Open Sans Regular'),local('OpenSans-Regular'),url(./open-sans-v16-latin-regular.woff2) format('woff2'),url(./open-sans-v16-latin-regular.woff) format('woff')
+	src:local('Open Sans Regular'),local('OpenSans-Regular'),url(../fonts/open-sans-v16-latin-regular.woff2) format('woff2'),url(./fonts/open-sans-v16-latin-regular.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:'Open Sans';
 	font-style:normal;
 	font-weight:600;
-	src:local('Open Sans SemiBold'),local('OpenSans-SemiBold'),url(./open-sans-v16-latin-600.woff2) format('woff2'),url(./open-sans-v16-latin-600.woff) format('woff')
+	src:local('Open Sans SemiBold'),local('OpenSans-SemiBold'),url(../fonts/open-sans-v16-latin-600.woff2) format('woff2'),url(../fonts/open-sans-v16-latin-600.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:Dosis;
 	font-style:normal;
 	font-weight:200;
-	src:local('Dosis ExtraLight'),local('Dosis-ExtraLight'),url(./dosis-v8-latin-200.woff2) format('woff2'),url(./dosis-v8-latin-200.woff) format('woff')
+	src:local('Dosis ExtraLight'),local('Dosis-ExtraLight'),url(../fonts/dosis-v8-latin-200.woff2) format('woff2'),url(../fonts/dosis-v8-latin-200.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:Dosis;
 	font-style:normal;
 	font-weight:400;
-	src:local('Dosis Regular'),local('Dosis-Regular'),url(./dosis-v8-latin-regular.woff2) format('woff2'),url(./dosis-v8-latin-regular.woff) format('woff')
+	src:local('Dosis Regular'),local('Dosis-Regular'),url(../fonts/dosis-v8-latin-regular.woff2) format('woff2'),url(../fonts/dosis-v8-latin-regular.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:Dosis;
 	font-style:normal;
 	font-weight:500;
-	src:local('Dosis Medium'),local('Dosis-Medium'),url(./dosis-v8-latin-500.woff2) format('woff2'),url(./dosis-v8-latin-500.woff) format('woff')
+	src:local('Dosis Medium'),local('Dosis-Medium'),url(../fonts/dosis-v8-latin-500.woff2) format('woff2'),url(../fonts/dosis-v8-latin-500.woff) format('woff')
 }
 @font-face {
 	font-display:swap;
 	font-family:Dosis;
 	font-style:normal;
 	font-weight:600;
-	src:local('Dosis SemiBold'),local('Dosis-SemiBold'),url(./dosis-v8-latin-600.woff2) format('woff2'),url(./dosis-v8-latin-600.woff) format('woff')
+	src:local('Dosis SemiBold'),local('Dosis-SemiBold'),url(../fonts/dosis-v8-latin-600.woff2) format('woff2'),url(../fonts/dosis-v8-latin-600.woff) format('woff')
 }
 *,::after,::before {
 	-webkit-box-sizing:border-box;
