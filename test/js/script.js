@@ -55,7 +55,7 @@ IP = {
         })
     },
     getIP_Y: function() {
-        IP.get("https://ip.ssss.fun/cdn-cgi/trace?z=" + random, "text").then(function(t) {
+        IP.get("https://www.cloudflare.com/cdn-cgi/trace?z=" + random, "text").then(function(t) {
             var e = {},
             n = t.data.split("\n"),
             i = Array.isArray(n),
