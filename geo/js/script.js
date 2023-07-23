@@ -73,7 +73,7 @@ function syntaxHighlight(e) {
         '<span class="' + t + '">' + e + "</span>"
     })
 }
-var APIendpoint = "cors.ssss.fun/demo.ip-api.com",
+var APIendpoint = "cors.eu.org/demo.ip-api.com",
 currentLanguage = "zh-CN",
 proto = "https:" == document.location.protocol ? "https://": "http://";
 query(),
